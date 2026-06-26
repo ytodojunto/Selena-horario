@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aviso importante · XV de Selena</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --celeste: #5BB5E5;
+      --celeste-mid: #3A96CC;
+      --celeste-dark: #1A5C8A;
+      --white: #FFFFFF;
+      --gold-accent: #F5C518;
+      --text-dark: #0d2233;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: 'Nunito', sans-serif;
+      color: var(--white);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+      overflow-x: hidden;
+      position: relative;
+      /* Camiseta: franjas verticales celeste y blanco */
+      background: repeating-linear-gradient(
+        to right,
+        var(--celeste) 0px,
+        var(--celeste) 60px,
+        #ffffff 60px,
+        #ffffff 90px
+      );
+    }
+
+    /* Overlay para legibilidad */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(26,92,138,0.82) 0%, rgba(58,150,204,0.75) 60%, rgba(26,92,138,0.88) 100%);
+      z-index: 0;
+    }
+
+    /* Banderas decorativas arriba y abajo */
+    .flags-top, .flags-bottom {
+      position: relative;
+      z-index: 1;
+      font-size: 2rem;
+      letter-spacing: 0.3rem;
+      margin: 0.5rem 0;
+      user-select: none;
+    }
+
+    .card {
+      position: relative;
+      z-index: 1;
+      background: rgba(255,255,255,0.13);
+      backdrop-filter: blur(12px);
+      border: 2px solid rgba(255,255,255,0.45);
+      border-radius: 24px;
+      max-width: 460px;
+      width: 100%;
+      padding: 2.4rem 2rem;
+      text-align: center;
+      box-shadow: 0 8px 48px rgba(0,0,0,0.30);
+    }
+
+    .badge {
+      display: inline-block;
+      background: var(--gold-accent);
+      color: var(--text-dark);
+      font-weight: 800;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.9rem;
+      border-radius: 999px;
+      margin-bottom: 1.2rem;
+    }
+
+    h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.4rem, 9vw, 3.4rem);
+      letter-spacing: 0.06em;
+      line-height: 1.05;
+      margin-bottom: 0.2rem;
+      color: var(--white);
+      text-shadow: 0 2px 10px rgba(0,0,0,0.25);
+    }
+
+    .subtitle {
+      font-size: 0.95rem;
+      font-weight: 600;
+      opacity: 0.8;
+      margin-bottom: 1.8rem;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid rgba(255,255,255,0.3);
+      margin: 1.4rem 0;
+    }
+
+    .horario-label {
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      opacity: 0.65;
+      margin-bottom: 0.4rem;
+    }
+
+    .horario-viejo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.6rem;
+      color: rgba(255,255,255,0.35);
+      text-decoration: line-through;
+      text-decoration-color: rgba(255,80,80,0.65);
+      text-decoration-thickness: 3px;
+      line-height: 1;
+    }
+
+    .arrow {
+      font-size: 1.4rem;
+      margin: 0.35rem 0;
+      opacity: 0.6;
+    }
+
+    .horario-nuevo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(4.5rem, 20vw, 6.5rem);
+      color: var(--white);
+      line-height: 1;
+      text-shadow: 0 0 40px rgba(255,255,255,0.4), 0 4px 16px rgba(0,0,0,0.2);
+      letter-spacing: 0.04em;
+    }
+
+    .motivo {
+      background: rgba(255,255,255,0.14);
+      border-left: 4px solid rgba(255,255,255,0.7);
+      border-radius: 8px;
+      padding: 1rem 1.1rem;
+      margin: 1.4rem 0;
+      font-size: 0.93rem;
+      font-weight: 600;
+      line-height: 1.55;
+      text-align: left;
+    }
+
+    /* Countdown */
+    .countdown-title {
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      opacity: 0.65;
+      margin-bottom: 0.8rem;
+    }
+
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 0.7rem;
+      flex-wrap: wrap;
+    }
+
+    .cd-block {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .cd-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.4rem;
+      background: rgba(255,255,255,0.18);
+      border: 1.5px solid rgba(255,255,255,0.4);
+      border-radius: 10px;
+      width: 3.2rem;
+      line-height: 3.2rem;
+      text-align: center;
+    }
+
+    .cd-label {
+      font-size: 0.63rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0.6;
+      margin-top: 0.3rem;
+    }
+
+    .footer {
+      margin-top: 1.4rem;
+      font-size: 0.8rem;
+      opacity: 0.6;
+      font-weight: 600;
+    }
+
+    .footer a {
+      color: var(--white);
+      opacity: 0.9;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="flags-top">🇦🇷 🇦🇷 🇦🇷 🇦🇷 🇦🇷</div>
+
+  <div class="card">
+    <div class="badge">⚠️ Aviso importante</div>
+
+    <h1>XV de Selena</h1>
+    <p class="subtitle">Viernes 3 de julio · Jano's Costanera 2</p>
+
+    <hr class="divider" />
+
+    <p class="horario-label">Horario original</p>
+    <div class="horario-viejo">21:00 hs</div>
+
+    <div class="arrow">↓</div>
+
+    <p class="horario-label">Nuevo horario de inicio</p>
+    <div class="horario-nuevo">21:30</div>
+    <p style="font-size:0.82rem; opacity:0.7; margin-top:0.2rem; font-weight:600;">horas</p>
+
+    <div class="motivo">
+      🇦🇷 Ese día la Selección juega a las 19:00 hs, así que corrimos el inicio media horita para que nadie se pierda el partido.<br/><br/>
+      🎉 ¡Terminá de alentar y después nos vemos en la fiesta!
+    </div>
+
+    <hr class="divider" />
+
+    <p class="countdown-title">Faltan para la fiesta</p>
+    <div class="countdown">
+      <div class="cd-block"><span class="cd-num" id="cd-d">--</span><span class="cd-label">días</span></div>
+      <div class="cd-block"><span class="cd-num" id="cd-h">--</span><span class="cd-label">horas</span></div>
+      <div class="cd-block"><span class="cd-num" id="cd-m">--</span><span class="cd-label">min</span></div>
+      <div class="cd-block"><span class="cd-num" id="cd-s">--</span><span class="cd-label">seg</span></div>
+    </div>
+
+    <p class="footer">
+      Av. Rafael Obligado 6340, CABA &nbsp;·&nbsp;
+      <a href="https://maps.app.goo.gl/aDCimA4QT2yfc2Mv5" target="_blank">¿Cómo llego?</a>
+    </p>
+  </div>
+
+  <div class="flags-bottom">🇦🇷 🇦🇷 🇦🇷 🇦🇷 🇦🇷</div>
+
+  <script>
+    const target = new Date('2026-07-03T21:30:00-03:00').getTime();
+    function pad(n) { return String(n).padStart(2, '0'); }
+    function tick() {
+      const diff = target - Date.now();
+      if (diff <= 0) {
+        ['cd-d','cd-h','cd-m','cd-s'].forEach(id => document.getElementById(id).textContent = '00');
+        return;
+      }
+      document.getElementById('cd-d').textContent = pad(Math.floor(diff / 86400000));
+      document.getElementById('cd-h').textContent = pad(Math.floor((diff % 86400000) / 3600000));
+      document.getElementById('cd-m').textContent = pad(Math.floor((diff % 3600000) / 60000));
+      document.getElementById('cd-s').textContent = pad(Math.floor((diff % 60000) / 1000));
+    }
+    tick();
+    setInterval(tick, 1000);
+  </script>
+</body>
+</html>
